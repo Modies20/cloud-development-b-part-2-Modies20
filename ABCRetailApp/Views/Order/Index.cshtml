@@ -1,0 +1,80 @@
+@model IEnumerable<ABCRetailApp.Services.Order>
+@{
+    ViewData["Title"] = "Orders";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Orders</h2>
+                <a asp-action="Create" class="btn btn-success">
+                    <i class="fas fa-plus"></i> New Order
+                </a>
+            </div>
+
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @TempData["SuccessMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @TempData["ErrorMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Orders</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Customer</th>
+                                        <th>Product</th>
+                                        <th>Qty</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var o in Model)
+                                    {
+                                        <tr>
+                                            <td>@o.DateCreated.ToString("yyyy-MM-dd HH:mm")</td>
+                                            <td>@o.CustomerName</td>
+                                            <td>@o.ProductName</td>
+                                            <td>@o.Quantity</td>
+                                            <td><strong>R@o.TotalAmount.ToString("N2")</strong></td>
+                                            <td><span class="badge bg-secondary">@o.Status</span></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5">
+                            <div class="display-1 text-muted">🧾</div>
+                            <h4>No Orders Yet</h4>
+                            <p class="text-muted">Create your first order.</p>
+                            <a asp-action="Create" class="btn btn-success btn-lg"><i class="fas fa-plus"></i> New Order</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,83 @@
+@{
+    ViewData["Title"] = "Upload Image";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Upload Image</h4>
+                </div>
+                <div class="card-body">
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            @TempData["SuccessMessage"]
+                            @if (TempData["ImageUrl"] != null)
+                            {
+                                <br><strong>Image URL:</strong> <a href="@TempData["ImageUrl"]" target="_blank">@TempData["ImageUrl"]</a>
+                            }
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    }
+
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            @TempData["ErrorMessage"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    }
+
+                    <form asp-action="Upload" method="post" enctype="multipart/form-data">
+                        <div class="mb-4">
+                            <label for="file" class="form-label">Select Image File *</label>
+                            <input type="file" class="form-control" id="file" name="file" accept="image/*" required onchange="previewImage(this)">
+                            <div class="form-text">
+                                Supported formats: JPG, JPEG, PNG, GIF, BMP (Max size: 5MB)
+                            </div>
+                        </div>
+
+                        <div class="mb-4" id="imagePreview" style="display: none;">
+                            <label class="form-label">Preview:</label>
+                            <div class="text-center">
+                                <img id="preview" src="#" alt="Image Preview" class="img-thumbnail" style="max-height: 300px;">
+                            </div>
+                        </div>
+
+
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a asp-action="Index" class="btn btn-secondary me-md-2">
+                                <i class="fas fa-arrow-left"></i> Back to Images
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-upload"></i> Upload Image
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    document.getElementById('preview').src = e.target.result;
+                    document.getElementById('imagePreview').style.display = 'block';
+                };
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}

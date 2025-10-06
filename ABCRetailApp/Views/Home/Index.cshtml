@@ -1,0 +1,131 @@
+﻿@{
+    ViewData["Title"] = "ABC Retail - Azure Storage Demo";
+}
+
+<!-- Hero Section -->
+<div class="hero-section text-center py-5 mb-5">
+    <div class="hero-content">
+        <h1 class="hero-title display-4 fw-bold mb-3">ABC Retail</h1>
+        <p class="hero-subtitle lead mb-4">Azure Cloud Storage Solutions</p>
+        <p class="hero-author text-muted">by Mpumelelo Chonco - st10449316</p>
+    </div>
+</div>
+
+<!-- Feature Cards -->
+<div class="row g-4">
+    <div class="col-md-6 col-lg-3">
+        <div class="feature-card h-100">
+            <div class="card-body text-center p-4">
+                <div class="feature-icon mb-4">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h5 class="feature-title mb-3">Customer Profiles</h5>
+                <p class="feature-description mb-4">Manage customer information using Azure Table Storage</p>
+                <div class="d-grid gap-2">
+                    <a href="@Url.Action("Index", "Customer")" class="btn btn-primary text-white">
+                        <i class="fas fa-eye me-2"></i>View Customers
+                    </a>
+                    <a href="@Url.Action("Create", "Customer")" class="btn btn-outline-primary">
+                        <i class="fas fa-plus me-2"></i>Add Customer
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+        <div class="feature-card h-100">
+            <div class="card-body text-center p-4">
+                <div class="feature-icon mb-4">
+                    <i class="fas fa-box"></i>
+                </div>
+                <h5 class="feature-title mb-3">Product Catalog</h5>
+                <p class="feature-description mb-4">Store product information using Azure Table Storage</p>
+                <div class="d-grid gap-2">
+                    <a href="@Url.Action("Index", "Product")" class="btn btn-primary text-white">
+                        <i class="fas fa-eye me-2"></i>View Products
+                    </a>
+                    <a href="@Url.Action("Create", "Product")" class="btn btn-outline-primary">
+                        <i class="fas fa-plus me-2"></i>Add Product
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+        <div class="feature-card h-100">
+            <div class="card-body text-center p-4">
+                <div class="feature-icon mb-4">
+                    <i class="fas fa-images"></i>
+                </div>
+                <h5 class="feature-title mb-3">Product Images</h5>
+                <p class="feature-description mb-4">Upload and manage images using Azure Blob Storage</p>
+                <div class="d-grid gap-2">
+                    <a href="@Url.Action("Index", "Image")" class="btn btn-primary text-white">
+                        <i class="fas fa-eye me-2"></i>View Images
+                    </a>
+                    <a href="@Url.Action("Upload", "Image")" class="btn btn-outline-primary">
+                        <i class="fas fa-upload me-2"></i>Upload Image
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+        <div class="feature-card h-100">
+            <div class="card-body text-center p-4">
+                <div class="feature-icon mb-4">
+                    <i class="fas fa-list-alt"></i>
+                </div>
+                <h5 class="feature-title mb-3">Message Queue</h5>
+                <p class="feature-description mb-4">Process orders and inventory using Azure Queue Storage</p>
+                <div class="d-grid gap-2">
+                    <a href="@Url.Action("Index", "Queue")" class="btn btn-primary text-white">
+                        <i class="fas fa-eye me-2"></i>View Queue
+                    </a>
+                    <a href="@Url.Action("SendMessage", "Queue")" class="btn btn-outline-primary">
+                        <i class="fas fa-paper-plane me-2"></i>Send Message
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Additional Features -->
+<div class="row g-4 mt-4">
+    <div class="col-md-6">
+        <div class="feature-card h-100">
+            <div class="card-body text-center p-4">
+                <div class="feature-icon mb-4">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <h5 class="feature-title mb-3">Contract Files</h5>
+                <p class="feature-description mb-4">Store and manage contract documents using Azure File Storage</p>
+                <div class="d-grid gap-2">
+                    <a href="@Url.Action("Index", "File")" class="btn btn-primary text-white">
+                        <i class="fas fa-eye me-2"></i>View Files
+                    </a>
+                    <a href="@Url.Action("Upload", "File")" class="btn btn-outline-primary">
+                        <i class="fas fa-upload me-2"></i>Upload Contract
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Azure Banner -->
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="azure-banner text-center py-4">
+            <div class="feature-icon mb-3">
+                <i class="fas fa-cloud"></i>
+            </div>
+            <h5 class="mb-0">Azure Storage Demo</h5>
+        </div>
+    </div>
+</div>

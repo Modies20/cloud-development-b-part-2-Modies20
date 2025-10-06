@@ -1,0 +1,142 @@
+@{
+    ViewData["Title"] = "Sample Data";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center mb-4">
+                <h2>Sample Data</h2>
+                <p class="text-muted">Create or clear demo data for quick testing</p>
+            </div>
+
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @TempData["SuccessMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @TempData["ErrorMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="display-1 text-dark">👥</div>
+                            <h5 class="card-title">Customer Profiles</h5>
+
+                            <form asp-action="CreateSampleCustomers" method="post" class="mb-2">
+                                <button type="submit" class="btn btn-primary">Create Customers</button>
+                            </form>
+                            <form asp-action="DeleteAllCustomers" method="post">
+                                <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Delete all customers?')">Delete All</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="display-1 text-dark">📦</div>
+                            <h5 class="card-title">Product Catalog</h5>
+
+                            <form asp-action="CreateSampleProducts" method="post" class="mb-2">
+                                <button type="submit" class="btn btn-success">Create Products</button>
+                            </form>
+                            <form asp-action="DeleteAllProducts" method="post">
+                                <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Delete all products?')">Delete All</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="display-1 text-dark">📨</div>
+                            <h5 class="card-title">Queue Messages</h5>
+
+                            <form asp-action="CreateSampleMessages" method="post" class="mb-2">
+                                <button type="submit" class="btn btn-warning">Create Messages</button>
+                            </form>
+                            <form asp-action="DeleteAllMessages" method="post">
+                                <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Delete all messages?')">Delete All</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="display-1 text-dark">📄</div>
+                            <h5 class="card-title">Contract Files</h5>
+
+                            <a href="@Url.Action("UploadSampleContracts", "File")" class="btn btn-secondary">Go to Files</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card bg-dark text-white">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">🚀 Bulk Operations</h5>
+
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                <form asp-action="CreateAll" method="post" style="display:inline;">
+                                    <button type="submit" class="btn btn-secondary btn-lg me-md-2">
+                                        <i class="fas fa-magic"></i> Create All Sample Data
+                                    </button>
+                                </form>
+                                <form asp-action="DeleteAll" method="post" style="display:inline;">
+                                    <button type="submit" class="btn btn-outline-secondary btn-lg" onclick="return confirm('⚠️ This will delete ALL data (customers, products, messages). Are you sure?')">
+                                        <i class="fas fa-trash-alt"></i> Delete All Data
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-12">
+
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-12">
+
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <div class="btn-group" role="group">
+                        <a href="@Url.Action("Index", "Customer")" class="btn btn-outline-primary">View Customers</a>
+                        <a href="@Url.Action("Index", "Product")" class="btn btn-outline-success">View Products</a>
+                        <a href="@Url.Action("Index", "Image")" class="btn btn-outline-info">View Images</a>
+                        <a href="@Url.Action("Index", "Queue")" class="btn btn-outline-warning">View Queue</a>
+                        <a href="@Url.Action("Index", "File")" class="btn btn-outline-secondary">View Files</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

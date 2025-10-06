@@ -1,0 +1,114 @@
+@model ABCRetailApp.Services.CustomerProfile
+
+@{
+    ViewData["Title"] = "Customer Details";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header">
+                    <h4>👤 Customer Profile Details</h4>
+                    <p class="mb-0 text-muted">View customer information stored in Azure Table Storage</p>
+                </div>
+                <div class="card-body">
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            @TempData["SuccessMessage"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    }
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Personal Information</h5>
+                            <dl class="row">
+                                <dt class="col-sm-4">First Name:</dt>
+                                <dd class="col-sm-8"><strong>@Model.FirstName</strong></dd>
+                                
+                                <dt class="col-sm-4">Last Name:</dt>
+                                <dd class="col-sm-8"><strong>@Model.LastName</strong></dd>
+                                
+                                <dt class="col-sm-4">Full Name:</dt>
+                                <dd class="col-sm-8"><span class="badge bg-primary">@Model.FirstName @Model.LastName</span></dd>
+                                
+                                <dt class="col-sm-4">Email:</dt>
+                                <dd class="col-sm-8">
+                                    <a href="mailto:@Model.Email" class="text-decoration-none">
+                                        <i class="fas fa-envelope"></i> @Model.Email
+                                    </a>
+                                </dd>
+                                
+                                <dt class="col-sm-4">Phone:</dt>
+                                <dd class="col-sm-8">
+                                    <a href="tel:@Model.Phone" class="text-decoration-none">
+                                        <i class="fas fa-phone"></i> @Model.Phone
+                                    </a>
+                                </dd>
+                            </dl>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <h5 class="mb-3">System Information</h5>
+                            <dl class="row">
+                                <dt class="col-sm-5">Customer ID:</dt>
+                                <dd class="col-sm-7"><code>@Model.RowKey</code></dd>
+                                
+                                <dt class="col-sm-5">Partition Key:</dt>
+                                <dd class="col-sm-7"><code>@Model.PartitionKey</code></dd>
+                                
+                                <dt class="col-sm-5">Date Created:</dt>
+                                <dd class="col-sm-7">
+                                    <i class="fas fa-calendar-plus"></i> 
+                                    @Model.DateCreated.ToString("dddd, MMMM dd, yyyy 'at' HH:mm")
+                                </dd>
+                                
+                                <dt class="col-sm-5">Last Modified:</dt>
+                                <dd class="col-sm-7">
+                                    <i class="fas fa-clock"></i> 
+                                    @(Model.Timestamp?.ToString("dddd, MMMM dd, yyyy 'at' HH:mm") ?? "Never modified")
+                                </dd>
+                                
+                                <dt class="col-sm-5">ETag:</dt>
+                                <dd class="col-sm-7"><small class="text-muted">@Model.ETag</small></dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(Model.Address))
+                    {
+                        <div class="mt-4">
+                            <h5 class="mb-3">Address Information</h5>
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <p class="mb-0">
+                                        <i class="fas fa-map-marker-alt text-primary"></i> 
+                                        @Model.Address
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="mt-4 pt-3 border-top">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a asp-action="Index" class="btn btn-secondary me-md-2">
+                                <i class="fas fa-arrow-left"></i> Back to List
+                            </a>
+                            <a asp-action="Edit" asp-route-partitionKey="@Model.PartitionKey" asp-route-rowKey="@Model.RowKey" 
+                               class="btn btn-warning me-md-2">
+                                <i class="fas fa-edit"></i> Edit Customer
+                            </a>
+                            <a asp-action="Delete" asp-route-partitionKey="@Model.PartitionKey" asp-route-rowKey="@Model.RowKey" 
+                               class="btn btn-danger">
+                                <i class="fas fa-trash"></i> Delete Customer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
